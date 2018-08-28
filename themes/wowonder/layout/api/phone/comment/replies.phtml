@@ -1,0 +1,55 @@
+<div class="reply reply-container" id="comment_reply_<?php echo $wo['reply']['id'];?>" data-reply-id="<?php echo $wo['reply']['id'];?>">
+   <a class="<?php echo Wo_RightToLeft('pull-left'); ?>" href="<?php echo $wo['reply']['publisher']['url']?>">
+   <img class="avatar <?php echo Wo_RightToLeft('pull-left'); ?>" src="<?php echo $wo['reply']['publisher']['avatar']?>" alt="avatar">
+   </a>
+   <div class="comment-body">
+      <div class="comment-heading reply-heading">
+         <span class="user-popover" data-id="<?php echo $wo['reply']['publisher']['id'];?>" data-type="<?php echo $wo['reply']['publisher']['type'];?>">
+         <a href="<?php echo $wo['reply']['publisher']['url']?>" data-ajax="?link1=timeline&u=<?php echo $wo['reply']['publisher']['username'];?>">
+            <h4 class="user">
+               <?php echo $wo['reply']['publisher']['name']?>
+            </h4>
+         </a>
+         </span>
+         <?php  if($wo['reply']['publisher']['verified'] == 1) {   ?>
+         <span class="verified-color" data-toggle="tooltip" title="<?php echo $wo['lang']['verified_user'];?>"><i class="fa fa-check-circle"></i></span>
+         <?php } ?>
+         <div class="<?php echo Wo_RightToLeft('pull-right');?> comment-options">
+            <?php if ($wo['reply']['post_onwer'] === true|| $wo['reply']['onwer'] === true) {?>
+            <span class="pointer" id="deleteComment" onclick="Wo_DeleteReplyComment(<?php echo $wo['reply']['id']?>);">
+            <i class="fa fa-trash-o progress-icon" data-icon="trash-o"></i>
+            </span>
+            <?php } ?>
+         </div>
+         <span class="time ajax-time" title="<?php echo date('c',$wo['reply']['time']);?>"><?php echo $wo['reply']['time']?></span>
+         <div class="reply-text"><?php echo $wo['reply']['text']?></div>
+         
+         <div class="clear"></div>   
+      </div>
+      <span class="comment-options">
+            <span class="comment-icons">
+            <span class="pointer" id="LikeReplyComment" onclick="Wo_RegisterCommentReplyLike(<?php echo $wo['reply']['id']; ?>);">
+            <?php if($wo['reply']['is_comment_liked'] !== true) { ?>
+            <i class="fa fa-thumbs-up progress-icon" data-icon="thumbs-up"></i>
+            <?php } else { ?>
+            <i class="fa fa-thumbs-up progress-icon active-like" data-icon="thumbs-up"></i>
+            <?php } ?>
+            </span> 
+            <span id="comment-reply-likes">
+            <?php echo $wo['reply']['comment_likes'];?>
+            </span> · 
+            </span>
+            <span class="pointer" id="WonderReplyComment" onclick="Wo_RegisterCommentReplyWonder(<?php echo $wo['reply']['id']; ?>);">
+            <?php if($wo['reply']['is_comment_wondered'] !== true) { ?>
+            <i class="fa fa-<?php echo $wo['second_post_button_icon'];?> progress-icon" data-icon="<?php echo $wo['second_post_button_icon'];?>"></i>
+            <?php } else {  ?>
+            <i class="fa fa-<?php echo $wo['second_post_button_icon'];?> progress-icon active-wonder" data-icon="<?php echo $wo['second_post_button_icon'];?>"></i>
+            <?php } ?>
+            </span>
+            <span id="comment-reply-wonders">
+            <?php echo $wo['reply']['comment_wonders'];?>
+            </span> · 
+      </span>
+   </div>
+   <?php echo Wo_LoadPage('modals/delete-comment-reply');?>
+</div>

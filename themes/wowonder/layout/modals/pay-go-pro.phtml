@@ -1,0 +1,21 @@
+<div class="modal fade" id="pay-go-pro" role="dialog"  data-keyboard="false">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h4 class="modal-title"><i class="fa fa-money"></i> <?php echo $wo['lang']['choose_a_payment_method'] ?></h4>
+         </div>
+         <div class="modal-body">
+            <button class="btn btn-paypal" onclick="Wo_GetPayPalLink('{pro_type}');"><i class="fa fa-paypal"></i> <?php echo $wo['lang']['paypal'] ?></button>
+            <?php if ($wo['config']['credit_card'] == 'yes') { ?>
+			   <button class="btn-cart btn" onclick="Wo_CheckOutCard({pro_type_id}, '{pro_type_description}', {pro_type_price}, 'credit_card');"><i class="fa fa-credit-card"></i> <?php echo $wo['lang']['credit_card'] ?></button>
+            <?php } ?>
+            <?php if ($wo['config']['bitcoin'] == 'yes') { ?>
+			   <button class="btn-bitcoin btn" onclick="Wo_CheckOutCard({pro_type_id}, '{pro_type_description}', {pro_type_price}, 'bitcoin');"><i class="fa fa-bitcoin"></i> <?php echo $wo['lang']['bitcoin'] ?></button>
+            <?php } ?>
+            <?php if ($wo['config']['alipay'] == 'yes') { ?>
+            <button class="btn-alipay btn" onclick="Wo_CheckOutCard({pro_type_id}, '{pro_type_description}', {pro_type_price}, 'alipay');">Alipay</button>
+            <?php } ?>
+         </div>
+      </div>
+   </div>
+</div>
